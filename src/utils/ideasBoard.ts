@@ -47,8 +47,8 @@ export const ROADMAP_STATUSES: IdeaStatusId[] = ['planned', 'started', 'complete
 export const ideaStatuses: IdeaStatus[] = [
   {
     id: 'open',
-    label: 'Submitted',
-    description: 'Open for discussion and votes. No decision has been made.',
+    label: 'Open',
+    description: 'Submitted and open for discussion and votes. No decision has been made.',
     icon: 'tabler:bulb',
   },
   {
@@ -59,13 +59,13 @@ export const ideaStatuses: IdeaStatus[] = [
   },
   {
     id: 'planned',
-    label: 'Approved priority',
+    label: 'Planned',
     description: 'Approved as a priority. Timing still depends on contributor capacity.',
     icon: 'tabler:flag',
   },
   {
     id: 'started',
-    label: 'In progress',
+    label: 'Started',
     description: 'Work is underway, usually tracked in a linked GitHub issue or pull request.',
     icon: 'tabler:progress',
   },
