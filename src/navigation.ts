@@ -35,6 +35,15 @@ export const headerData = {
       ],
     },
     {
+      text: 'How to Contribute',
+      href: getPermalink('/community/contributing/getting-started'),
+      links: [
+        { text: 'Getting Started', href: getPermalink('/community/contributing/getting-started') },
+        { text: 'Developer Guide', href: getPermalink('/community/contributing') },
+        { text: 'Module Acceptance', href: getPermalink('/community/contributing/module-acceptance') },
+      ],
+    },
+    {
       text: 'Community',
       href: getPermalink('/community'),
       links: [
@@ -84,6 +93,7 @@ export const footerData = {
       title: 'Community',
       href: getPermalink('/community'),
       links: [
+        { text: 'How to Contribute', href: getPermalink('/community/contributing/getting-started') },
         { text: 'Events', href: getPermalink('/events') },
         { text: 'Blog', href: getBlogPermalink() },
         { text: 'GitHub', href: 'https://github.com/mage-os' },

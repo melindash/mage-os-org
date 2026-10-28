@@ -1,0 +1,171 @@
+---
+layout: ~/layouts/ContentPageLayout.astro
+title: Module Acceptance Criteria and Process
+description: Criteria and review processes for Mage-OS Lab modules, maintenance, migration, and inclusion in official releases.
+tagline: How to Contribute
+editFile: src/pages/community/contributing/module-acceptance.mdx
+---
+
+import Callout from '~/components/ui/Callout.astro';
+
+This policy explains how modules are evaluated for Mage-OS Lab, migration to the Mage-OS organization, and inclusion in an official Mage-OS release. It also defines ongoing maintenance expectations and when a project may be deprecated or archived.
+
+Community feedback informs each review. The Technical Board makes the acceptance decision and publishes its reasoning in the proposal thread.
+
+## Start with Mage-OS Lab
+
+Module proposals currently go through the [Mage-OS Lab organization](https://github.com/mage-os-lab). Contact the maintainers to discuss your project and request a repository. Repositories are created on request.
+
+Use [Mage-OS Lab Discussions](https://github.com/orgs/mage-os-lab/discussions) to introduce your proposal and provide a place for community feedback. A repository in Mage-OS Lab does not automatically qualify a module for migration to the Mage-OS organization or inclusion in an official release. Those decisions follow the separate reviews below.
+
+## Acceptance criteria
+
+### Value and functionality
+
+A module must:
+
+- Provide significant value to a meaningful portion of Mage-OS users, whether installed as a runtime dependency (`require`) or a development dependency (`require-dev`).
+- Offer functionality that is not already available in Mage-OS core, or demonstrably improve the performance, security, or usability of an existing feature.
+- Solve a clear problem or fill a gap in the ecosystem.
+
+### Technical requirements
+
+A module must:
+
+- Maintain high code quality and use appropriate design patterns and development practices.
+- Follow Mage-OS and Magento coding standards.
+- Demonstrate compatibility with the latest Mage-OS release.
+- Show active maintenance through recent updates and responses to reported issues.
+- Follow security best practices and have no known vulnerabilities.
+- Avoid excessive dependencies.
+- Follow semantic versioning.
+
+### Documentation and support
+
+A module must include clear installation instructions and comprehensive documentation covering usage, configuration, and troubleshooting. The proposal must also provide evidence of community adoption and support.
+
+### Licensing and attribution
+
+A module must use a compatible open-source license. Accepted licenses are OSL 3.0, BSD 3-Clause, MIT, and AFL. GPL-licensed code cannot be accepted under this policy.
+
+The module must comply with applicable legal requirements and include appropriate attribution for third-party code and dependencies.
+
+## Prepare your proposal
+
+Develop your module in line with the acceptance criteria. When requesting a repository or submitting a module for review, include:
+
+- The problem the module solves and its main functionality.
+- The intended users and the value it provides.
+- An overview of the technical implementation.
+- The testing approach.
+- Required dependencies.
+- A maintenance plan.
+- A link to the repository where reviewers can inspect the code, if one already exists.
+
+Make the module code available in the proposal thread before technical assessment.
+
+## Review and decision
+
+### Community review
+
+New module submissions are open for community review for **15 calendar days, beginning at the next technical meeting after submission**.
+
+Community members can provide technical feedback in the GitHub Discussion and use upvotes to indicate support. Explain concerns in a comment so the submitter and reviewers can address them.
+
+### Technical Board assessment
+
+After community review, the Technical Board evaluates:
+
+- Community feedback and votes.
+- Compliance with the acceptance criteria.
+- Alignment with the Mage-OS roadmap.
+- Long-term maintainability.
+
+### Decision
+
+The Technical Board posts its decision and explanation in the original discussion. The possible outcomes are:
+
+- **Accept:** The module is approved for inclusion in Mage-OS Lab.
+- **Revise:** Specific changes are required before acceptance.
+- **Reject:** The module is not accepted, with an explanation of the decision.
+
+### Revisions
+
+For a Revise decision, the Technical Board identifies the required changes. The submitter has **30 days** to implement them.
+
+When the changes are complete, add a comment to the original discussion with a link to the updated code. The Technical Board conducts a focused re-evaluation within **15 days**, then issues an Accept or Reject decision. In exceptional cases, the Board may allow a second revision round.
+
+## Maintenance after acceptance
+
+Accepted modules must continue to:
+
+- Respond promptly to bug reports and security issues.
+- Maintain compatibility with new Mage-OS releases.
+- Follow semantic versioning.
+- Update documentation when functionality changes.
+
+### Deprecation and removal
+
+A module may be deprecated and eventually removed if any of the following applies:
+
+- It has had no active maintenance for six months or more.
+- Critical security issues remain unaddressed.
+- It is incompatible with current Mage-OS versions.
+- Its functionality has been superseded by core features.
+
+## Migration to the Mage-OS organization
+
+### Migration criteria
+
+To move from `mage-os-lab` to `mage-os`, a module must meet the general acceptance criteria and:
+
+- Demonstrate value and stability through real-world use and community adoption.
+- Remain actively maintained, with recent updates and responses to issues.
+- Have no unresolved critical bugs or security vulnerabilities.
+
+### Migration process
+
+1. Submit a migration request in a GitHub Discussion or issue in the relevant repository. Include evidence of adoption, maintenance, and compliance with Mage-OS standards.
+2. Allow a **15-day community review period** for feedback and voting.
+3. The Technical Board reviews the feedback and verifies that the criteria are met, with particular attention to maintainability, strategic fit, and compatibility with Mage-OS core.
+4. The Board posts an Accept, Revise, or Reject decision in the original thread, with its reasoning.
+5. If revisions are requested, the submitter has **30 days** to make changes, followed by a focused re-evaluation.
+
+## Inclusion in an official Mage-OS release
+
+### Bundling criteria
+
+A module proposed for inclusion in an official release must:
+
+- Address a core need for a significant portion of Mage-OS users.
+- Be stable, well maintained, and fully compatible with the latest Mage-OS release.
+- Meet the highest standards for code quality, documentation, and security.
+- Use a license compatible with Mage-OS requirements.
+
+It should not duplicate functionality already provided by Mage-OS core or another bundled module.
+
+### Bundling process
+
+1. Submit a GitHub Discussion or issue explaining the case for inclusion, including user impact, why the module is needed, and its maintenance plan.
+2. Allow a **15-day community review period** for feedback and voting.
+3. The Technical Board evaluates community feedback, technical merit, and alignment with Mage-OS priorities.
+4. The Board posts an Accept, Revise, or Reject decision with its reasoning.
+5. If changes are required, the Board provides a revision window and re-evaluates the proposal after the changes are submitted.
+
+## Archiving inactive Lab projects
+
+A project in `mage-os-lab` that has not reached a stable release and remains inactive for an extended period will be archived.
+
+Before archiving the repository, an administrator adds this notice to the beginning of its README:
+
+<Callout type="info" title="Project archived">
+
+This Mage-OS project has not reached a stable release and has been inactive for an extended period.
+
+Archiving is not permanent. To resume development, contact the Mage-OS maintainers to request that the repository be unarchived.
+
+Thank you to everyone who contributed.
+
+</Callout>
+
+[Find other ways to contribute](/community/contributing/getting-started).
