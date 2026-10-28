@@ -1,0 +1,208 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '~/layouts/PageLayout.astro';
+import PageHero from '~/components/widgets/PageHero.astro';
+import Headline from '~/components/ui/Headline.astro';
+import Button from '~/components/ui/Button.astro';
+import Callout from '~/components/ui/Callout.astro';
+import IdeasRoadmap from '~/components/widgets/IdeasRoadmap.astro';
+import SupportMageOs from '~/components/widgets/SupportMageOs.astro';
+import { IDEAS_BOARD_URL, ideaCategories, ideaStatuses } from '~/utils/ideasBoard';
+
+const metadata = {
+  title: 'Ideas Board',
+  description:
+    'Suggest ideas for Mage-OS and vote on what matters to you: merchant features, developer tooling, security and performance, and community initiatives.',
+};
+
+const submissionPrompts = [
+  {
+    question: 'What problem are you trying to solve?',
+    hint: 'Describe the situation and what gets in the way today.',
+  },
+  { question: 'Who does it affect?', hint: 'Merchants, developers, agencies, contributors, or someone else.' },
+  {
+    question: 'What would a useful outcome look like?',
+    hint: 'How would you know the problem is solved? You do not need a technical design.',
+  },
+  { question: 'Examples or links (optional)', hint: 'Screenshots, related modules, GitHub discussions or issues.' },
+];
+
+const lifecycle = ideaStatuses.filter((status) => status.id !== 'declined');
+const declined = ideaStatuses.find((status) => status.id === 'declined');
+---
+
+<Layout metadata={metadata}>
+  <PageHero tagline="Get Involved" variant="gradient">
+    <Fragment slot="title">Ideas Board</Fragment>
+    <Fragment slot="subtitle">
+      Suggest improvements to Mage-OS and vote for the ideas you care about. The board covers the product, the
+      contributor experience and the community around it.
+    </Fragment>
+    <Fragment slot="actions">
+      <Button variant="primary" href={IDEAS_BOARD_URL} icon="tabler:external-link" text="Browse and vote on ideas" />
+      <Button variant="secondary" href={`${IDEAS_BOARD_URL}/#share`} icon="tabler:bulb" text="Share an idea" />
+    </Fragment>
+  </PageHero>
+
+  <section class="px-4 py-12 sm:px-6 mx-auto lg:px-8 max-w-5xl" aria-labelledby="how-it-works">
+    <h2 id="how-it-works" class="sr-only">How the ideas board works</h2>
+    <div class="grid gap-6 md:grid-cols-3">
+      <div class="rounded-lg bg-white dark:bg-slate-900 p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+        <Icon name="tabler:thumb-up" class="w-8 h-8 text-primary dark:text-orange-400 mb-3" aria-hidden="true" />
+        <h3 class="text-lg font-bold dark:text-white mb-2">Vote without an account</h3>
+        <p class="text-muted">
+          Anyone can vote, and you can remove your own vote. If you sign in later, your earlier votes move to your
+          account and are not counted twice.
+        </p>
+      </div>
+      <div class="rounded-lg bg-white dark:bg-slate-900 p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+        <Icon name="tabler:message-plus" class="w-8 h-8 text-primary dark:text-orange-400 mb-3" aria-hidden="true" />
+        <h3 class="text-lg font-bold dark:text-white mb-2">Share and discuss</h3>
+        <p class="text-muted">
+          Sign in with your email address to submit an idea or comment, so maintainers can follow up with questions.
+        </p>
+      </div>
+      <div class="rounded-lg bg-white dark:bg-slate-900 p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+        <Icon name="tabler:route" class="w-8 h-8 text-primary dark:text-orange-400 mb-3" aria-hidden="true" />
+        <h3 class="text-lg font-bold dark:text-white mb-2">Follow progress</h3>
+        <p class="text-muted">
+          Each idea shows its status and any linked GitHub discussions, issues and pull requests.
+        </p>
+      </div>
+    </div>
+
+    <Callout type="info" title="Votes inform priorities. They do not guarantee delivery." class="mt-8">
+      Mage-OS is built by volunteers and sponsored contributors. Maintainers weigh votes alongside feasibility,
+      security, maintenance cost and who is available to do the work. A popular idea can still wait, and a less-voted
+      one can move first when someone is ready to build it.
+    </Callout>
+  </section>
+
+  <section class="bg-gray-50 dark:bg-slate-800/50 py-16" aria-label="What you can suggest">
+    <div class="px-4 sm:px-6 mx-auto lg:px-8 max-w-5xl">
+      <Headline
+        title="What you can suggest"
+        subtitle="Software features and community initiatives are equally welcome."
+        tagline="Categories"
+      />
+      <ul class="grid gap-6 md:grid-cols-2 mt-8" role="list">
+        {
+          ideaCategories.map((category) => (
+            <li class="rounded-lg bg-white dark:bg-slate-900 p-6 shadow-sm">
+              <div class="flex items-center gap-3 mb-3">
+                <Icon name={category.icon} class="w-7 h-7 text-primary dark:text-orange-400" aria-hidden="true" />
+                <h3 class="text-lg font-bold dark:text-white">{category.name}</h3>
+              </div>
+              <p class="text-muted mb-3">{category.description}</p>
+              <p class="text-sm text-muted mb-4">
+                <span class="font-semibold text-gray-700 dark:text-gray-300">For example:</span>{' '}
+                {category.examples.join(', ')}
+              </p>
+              <a
+                href={`${IDEAS_BOARD_URL}/?tags=${category.slug}`}
+                class="inline-flex items-center gap-1 font-medium text-primary dark:text-orange-400 hover:underline focus-visible:underline"
+              >
+                Browse {category.name.toLowerCase()} ideas
+                <Icon name="tabler:arrow-right" class="w-4 h-4" aria-hidden="true" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 max-w-5xl" aria-label="Writing a useful idea">
+    <Headline
+      title="Writing a useful idea"
+      subtitle="The submission form asks four short questions. Plain language is fine."
+      tagline="Submitting"
+    />
+    <ol class="grid gap-4 md:grid-cols-2 mt-8">
+      {
+        submissionPrompts.map((prompt, index) => (
+          <li class="flex gap-4 rounded-lg border border-gray-200 dark:border-gray-700 p-5">
+            <span
+              class="flex-shrink-0 w-8 h-8 rounded-full bg-orange-100 dark:bg-orange-900/50 text-primary dark:text-orange-300 font-bold flex items-center justify-center"
+              aria-hidden="true"
+            >
+              {index + 1}
+            </span>
+            <div>
+              <h3 class="font-bold dark:text-white">{prompt.question}</h3>
+              <p class="text-sm text-muted mt-1">{prompt.hint}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="bg-gray-50 dark:bg-slate-800/50 py-16" aria-label="What each status means">
+    <div class="px-4 sm:px-6 mx-auto lg:px-8 max-w-5xl">
+      <Headline
+        title="What each status means"
+        subtitle="Statuses describe decisions and progress. Categories describe the topic."
+        tagline="Statuses"
+      />
+      <ol class="grid gap-4 md:grid-cols-5 mt-8">
+        {
+          lifecycle.map((status) => (
+            <li class="rounded-lg bg-white dark:bg-slate-900 p-4 shadow-sm">
+              <Icon name={status.icon} class="w-6 h-6 text-primary dark:text-orange-400 mb-2" aria-hidden="true" />
+              <h3 class="font-bold dark:text-white">{status.label}</h3>
+              <p class="text-sm text-muted mt-1">{status.description}</p>
+            </li>
+          ))
+        }
+      </ol>
+      {
+        declined && (
+          <p class="text-sm text-muted mt-4">
+            <strong class="text-gray-700 dark:text-gray-300">{declined.label}:</strong> {declined.description}
+          </p>
+        )
+      }
+    </div>
+  </section>
+
+  <IdeasRoadmap />
+
+  <section class="bg-gray-50 dark:bg-slate-800/50 py-16" aria-label="Voting, roles and privacy">
+    <div class="px-4 sm:px-6 mx-auto lg:px-8 max-w-4xl">
+      <Headline title="Voting, roles and privacy" tagline="How it works" />
+      <div class="prose dark:prose-invert prose-headings:font-heading prose-headings:font-bold max-w-none">
+        <h3>Anonymous votes</h3>
+        <p>
+          When you vote without signing in, the board stores a random identifier in a cookie on your device and keeps
+          only a one-way hash of it. That is how it recognises your vote, lets you remove it, and prevents the same
+          browser from voting twice on one idea.
+        </p>
+        <p>
+          Without accounts, repeat voting cannot be fully prevented: clearing cookies or switching browsers looks like a
+          new visitor. The board limits how quickly new votes can arrive from one network, but it does not treat an IP
+          address as a person, so colleagues on a shared office or university network can all vote. Maintainers review
+          unusual bursts and can remove votes that look automated. Votes are a signal for discussion, not a ballot.
+        </p>
+        <h3>Optional roles</h3>
+        <p>
+          You can tell us whether you are a merchant or e-commerce manager, developer, agency, in marketing, or
+          something else. Choose as many as apply, or skip it. You can change your answer at any time from the board.
+        </p>
+        <p>
+          Roles help maintainers see which groups are taking part. They are self-reported, never change how much a vote
+          counts, and are only shown as totals. Anyone who picks several roles appears in each of those groups.
+          Individual voting histories are not published.
+        </p>
+        <h3>Ideas from GitHub</h3>
+        <p>
+          Ideas first proposed in GitHub discussions keep a link to the original discussion and credit its author. Votes
+          collected there are shown separately from votes cast on this board.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <SupportMageOs />
+</Layout>

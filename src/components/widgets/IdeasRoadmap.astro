@@ -1,0 +1,86 @@
+---
+import { Icon } from 'astro-icon/components';
+import Headline from '~/components/ui/Headline.astro';
+import { IDEAS_BOARD_URL, ROADMAP_STATUSES, getRoadmap, ideaUrl, statusFor } from '~/utils/ideasBoard';
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = 'Approved priorities',
+  subtitle = 'Ideas the maintainers have approved, started or delivered. Vote counts are shown as they were when this page was built.',
+} = Astro.props;
+
+const roadmap = getRoadmap();
+const columns = ROADMAP_STATUSES.map((id) => ({
+  status: statusFor(id)!,
+  ideas: roadmap.ideas.filter((idea) => idea.status === id),
+}));
+const fetchedDate = roadmap.fetchedAt
+  ? new Date(roadmap.fetchedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+  : null;
+---
+
+<section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 max-w-5xl" aria-label={title}>
+  <Headline title={title} subtitle={subtitle} tagline="Roadmap" />
+
+  {
+    roadmap.published && roadmap.ideas.length > 0 ? (
+      <>
+        <div class="grid gap-6 md:grid-cols-3">
+          {columns.map((column) => (
+            <div class="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 p-5">
+              <h3 class="flex items-center gap-2 font-bold dark:text-white mb-1">
+                <Icon name={column.status.icon} class="w-5 h-5 text-primary dark:text-orange-400" aria-hidden="true" />
+                {column.status.label}
+                <span class="ml-auto text-sm font-normal text-muted">{column.ideas.length}</span>
+              </h3>
+              <p class="text-sm text-muted mb-4">{column.status.description}</p>
+              {column.ideas.length > 0 ? (
+                <ul class="space-y-3" role="list">
+                  {column.ideas.map((idea) => (
+                    <li>
+                      <a
+                        href={ideaUrl(idea)}
+                        class="block rounded-md p-3 bg-gray-50 dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+                      >
+                        <span class="font-medium text-gray-900 dark:text-white">{idea.title}</span>
+                        <span class="block text-sm text-muted mt-1">
+                          {idea.votesCount} {idea.votesCount === 1 ? 'vote' : 'votes'}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p class="text-sm text-muted italic">Nothing here yet.</p>
+              )}
+            </div>
+          ))}
+        </div>
+        {fetchedDate && <p class="text-sm text-muted text-center mt-6">Last updated {fetchedDate}.</p>}
+      </>
+    ) : (
+      <div class="rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 p-8 text-center">
+        <Icon name="tabler:clipboard-list" class="w-10 h-10 mx-auto text-muted mb-3" aria-hidden="true" />
+        <p class="font-semibold text-gray-900 dark:text-white">No approved priorities have been published yet.</p>
+        <p class="text-muted mt-2 max-w-xl mx-auto">
+          The maintainers are reviewing the ideas carried over from GitHub. Approved priorities will appear here once
+          they are agreed. Until then, votes help show which ideas to review first.
+        </p>
+      </div>
+    )
+  }
+
+  <p class="text-center mt-8">
+    <a
+      href={IDEAS_BOARD_URL}
+      class="inline-flex items-center gap-1 font-medium text-primary dark:text-orange-400 hover:underline focus-visible:underline"
+    >
+      See all ideas and vote on the board
+      <Icon name="tabler:external-link" class="w-4 h-4" aria-hidden="true" />
+    </a>
+  </p>
+</section>

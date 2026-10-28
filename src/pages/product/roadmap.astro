@@ -8,6 +8,8 @@ import Features from '~/components/widgets/Features.astro';
 import Callout from '~/components/ui/Callout.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import VersionBadge from '~/components/ui/VersionBadge.astro';
+import IdeasRoadmap from '~/components/widgets/IdeasRoadmap.astro';
+import SupportMageOs from '~/components/widgets/SupportMageOs.astro';
 import { Icon } from 'astro-icon/components';
 
 const metadata = {
@@ -175,7 +177,7 @@ const metadata = {
     id="roadmap-2026"
     title="2026 Roadmap"
     tagline="What's Coming"
-    subtitle="Our development priorities are shaped by community input through weekly tech meetings, GitHub discussions, and member voting."
+    subtitle="Our development priorities are shaped by community input through weekly tech meetings, the ideas board, and member voting."
     items={[
       {
         title: 'Q1 2026 <span class="text-sm font-normal text-muted ml-2">(January - March)</span>',
@@ -203,6 +205,11 @@ const metadata = {
       Roadmap timing may adjust based on upstream Magento release schedules and community priorities.
     </Callout>
   </div>
+
+  <IdeasRoadmap
+    title="Community priorities"
+    subtitle="Ideas from the <a href='/ideas' class='text-primary underline'>ideas board</a> that maintainers have approved, started or delivered. Votes inform these decisions but do not guarantee delivery."
+  />
 
   <!-- Security Patch Schedule Section -->
   <section class="bg-gray-50 dark:bg-slate-800/50 py-16">
@@ -281,7 +288,7 @@ const metadata = {
           <Icon name="tabler:chevron-right" class="w-6 h-6" />
         </div>
         <VersionBadge status="minimum" text="1. Proposal" class="mb-3" />
-        <p class="text-sm text-muted">Community members submit ideas via GitHub or Discord</p>
+        <p class="text-sm text-muted">Community members share ideas on the ideas board or Discord</p>
       </div>
 
       <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 text-center relative">
@@ -404,19 +411,19 @@ const metadata = {
       {
         title: 'Weekly Tech Meetings',
         description:
-          'Join every <strong>Tuesday at 3 PM CET</strong> on <a href="/discord-channel" class="text-primary hover:underline">Discord</a> for direct input on technical decisions.',
+          'Join every <strong>Tuesday at 3 PM CET</strong> on <a href="/discord-channel" class="text-primary underline">Discord</a> for direct input on technical decisions.',
         icon: 'tabler:users-group',
       },
       {
-        title: 'GitHub Discussions',
+        title: 'Ideas Board',
         description:
-          'Propose and vote on features in <a href="https://github.com/orgs/mage-os-lab/discussions" target="_blank" class="text-primary hover:underline">GitHub discussions</a> to shape feature priorities.',
-        icon: 'tabler:message-circle',
+          'Share ideas and vote on the <a href="/ideas" class="text-primary underline">ideas board</a>. No account is needed to vote.',
+        icon: 'tabler:bulb',
       },
       {
         title: 'Become a Member',
         description:
-          '<a href="/community" class="text-primary hover:underline">Join the Mage-OS Association</a> for voting rights on governance and roadmap decisions.',
+          '<a href="/community" class="text-primary underline">Join the Mage-OS Association</a> for voting rights on governance and roadmap decisions.',
         icon: 'tabler:id-badge',
       },
       {
@@ -604,6 +611,8 @@ const metadata = {
     </div>
   </section>
 
+  <SupportMageOs />
+
   <!-- Questions Section -->
   <CallToAction
     actions={[
@@ -614,10 +623,9 @@ const metadata = {
         icon: 'tabler:brand-discord',
       },
       {
-        text: 'GitHub Discussions',
-        href: 'https://github.com/orgs/mage-os-lab/discussions',
-        target: '_blank',
-        icon: 'tabler:brand-github',
+        text: 'Ideas Board',
+        href: '/ideas',
+        icon: 'tabler:bulb',
       },
       {
         text: 'Contact Us',

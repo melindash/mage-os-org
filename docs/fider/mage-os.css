@@ -1,0 +1,348 @@
+/* Mage-OS theme for Fider. Paste into Site Settings > Advanced > Custom CSS. */
+:root,
+[data-theme='light'],
+body[data-theme='light'] {
+  --primary-color: #c2410c;
+  --primary-color-light: #ffedd5;
+  --primary-color-dark: #9a3412;
+  --colors-primary-base: #c2410c;
+  --colors-primary-light: #ffedd5;
+  --colors-primary-dark: #9a3412;
+  --colors-gray-50: #fafaf9;
+  --colors-gray-100: #fafaf9;
+  --colors-gray-200: #e7e5e4;
+  --colors-gray-300: #d6d3d1;
+  --colors-gray-400: #a8a29e;
+  --colors-gray-500: #78716c;
+  --colors-gray-600: #57534e;
+  --colors-gray-700: #525252;
+  --colors-gray-800: #262626;
+  --colors-gray-900: #171717;
+  --colors-white: #fff;
+  --colors-black: #262626;
+  --mage-page: #fafaf9;
+  --mage-surface: #fff;
+  --mage-wash: #fff7ed;
+  --mage-border: #e7e5e4;
+  --mage-orange-border: #fed7aa;
+  --mage-link: #9a3412;
+  --mage-focus: #c2410c;
+  --mage-shadow: 0 6px 24px -16px rgb(67 20 7 / 24%);
+}
+
+[data-theme='dark'],
+body[data-theme='dark'] {
+  --primary-color: #f97316;
+  --primary-color-light: #431c13;
+  --primary-color-dark: #fb923c;
+  --colors-primary-base: #f97316;
+  --colors-primary-light: #431c13;
+  --colors-primary-dark: #fb923c;
+  --colors-gray-50: #030620;
+  --colors-gray-100: #030620;
+  --colors-gray-200: #151b36;
+  --colors-gray-300: #303953;
+  --colors-gray-400: #64708c;
+  --colors-gray-500: #a3a3a3;
+  --colors-gray-600: #b8b8c3;
+  --colors-gray-700: #c7cad5;
+  --colors-gray-800: #e5e5e5;
+  --colors-gray-900: #fafafa;
+  --colors-white: #0c112b;
+  --colors-black: #e5e5e5;
+  --mage-page: #030620;
+  --mage-surface: #0c112b;
+  --mage-wash: #25191f;
+  --mage-border: #303953;
+  --mage-orange-border: #854124;
+  --mage-link: #fb923c;
+  --mage-focus: #fb923c;
+  --mage-shadow: 0 6px 24px -16px rgb(0 0 0 / 65%);
+  color-scheme: dark;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+}
+
+body {
+  background: var(--mage-page);
+  color: var(--colors-gray-800);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #fed7aa;
+  color: #7c2d12;
+}
+[data-theme='dark'] ::selection {
+  background: #9a3412;
+  color: #fff;
+}
+
+#c-header {
+  background: var(--mage-surface);
+  border-bottom-color: var(--mage-border) !important;
+  box-shadow: 0 2px 18px -12px rgb(67 20 7 / 20%);
+}
+
+#c-header .c-menu {
+  padding-block: 1.1rem;
+}
+#c-header .c-header__brand {
+  min-height: 2.5rem;
+  height: auto;
+}
+#c-header .c-header__brand img {
+  max-width: 3rem;
+  max-height: 3rem;
+  object-fit: contain;
+}
+#c-header .text-header {
+  font-size: 1.4rem;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+#c-header .c-header__nav {
+  gap: 1.4rem;
+  margin-inline-start: 1.5rem;
+}
+#c-header .c-header__nav-link {
+  color: var(--colors-gray-700);
+  padding-block: 0.55rem;
+  font-weight: 600;
+}
+body #c-header .c-header__nav-link:hover,
+body #c-header .c-header__nav-link--active {
+  color: var(--mage-link);
+}
+body #c-header .c-header__nav-link--active {
+  box-shadow: 0 2px 0 var(--colors-primary-base);
+}
+
+#p-home {
+  background: transparent;
+  padding-block: 3rem;
+  column-gap: 2.75rem;
+}
+
+#p-home .p-home__welcome-title {
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+}
+
+.header-emphasis {
+  color: var(--colors-primary-base);
+}
+#p-home .p-home__welcome-body {
+  color: var(--colors-gray-700);
+  line-height: 1.75;
+}
+#p-home .p-home__welcome-body a {
+  color: var(--mage-link);
+  text-underline-offset: 0.2em;
+}
+
+body #p-home .p-home__add-idea-btn {
+  background: var(--mage-surface);
+  border: 1px solid var(--mage-orange-border);
+  border-radius: 1rem;
+  box-shadow: var(--mage-shadow);
+  padding: 1.35rem 1.5rem;
+  color: var(--colors-gray-800);
+}
+
+#p-home .p-home__add-idea-btn:hover {
+  border-color: var(--colors-primary-base);
+  background: var(--mage-wash);
+}
+
+body[data-theme] .c-posts-container__post,
+body[data-theme] .c-roadmap-post {
+  background: var(--mage-surface);
+  border: 1px solid var(--mage-border);
+  border-radius: 1rem;
+  box-shadow: var(--mage-shadow);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.c-posts-container__post-link:hover .c-posts-container__post,
+.c-roadmap-post-link:hover .c-roadmap-post {
+  border-color: var(--mage-orange-border);
+  box-shadow: 0 8px 24px -14px rgb(154 52 18 / 25%);
+}
+
+.c-posts-container__post-title,
+.c-roadmap-post__title {
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--colors-gray-900);
+}
+.c-posts-container__post-description {
+  color: var(--colors-gray-700);
+}
+.c-posts-container__post-votes,
+.c-roadmap-post__votes {
+  color: var(--mage-link);
+}
+.c-posts-container__post-votes .text-semibold {
+  font-size: 1.1rem;
+  font-weight: 750;
+}
+
+.c-button {
+  border-radius: 999px;
+  font-weight: 600;
+}
+body .c-button--primary {
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(135deg, #c2410c, #9a3412);
+  box-shadow: 0 4px 14px -6px rgb(194 65 12 / 45%);
+}
+.c-button--primary:hover {
+  color: #fff;
+  background: linear-gradient(135deg, #9a3412, #7c2d12);
+}
+.c-button--secondary {
+  background: var(--mage-surface);
+  border-color: var(--mage-border);
+}
+.c-button--secondary:hover {
+  background: var(--mage-wash);
+  border-color: var(--mage-orange-border);
+}
+.c-button--link {
+  color: var(--mage-link);
+}
+
+.c-vote-counter__button,
+[data-theme='dark'] .c-vote-counter__button {
+  background: var(--mage-wash);
+  border-color: var(--mage-orange-border);
+  color: var(--mage-link);
+}
+.c-vote-counter__icon,
+[data-theme='dark'] .c-vote-counter__icon {
+  color: var(--mage-link);
+}
+.c-vote-counter__button:hover,
+.c-vote-counter__button--voted,
+[data-theme='dark'] .c-vote-counter__button:hover,
+[data-theme='dark'] .c-vote-counter__button--voted {
+  background: var(--mage-wash);
+  color: var(--mage-link);
+  border-color: var(--colors-primary-base);
+}
+.c-vote-counter__button:hover .c-vote-counter__icon,
+.c-vote-counter__button--voted .c-vote-counter__icon,
+[data-theme='dark'] .c-vote-counter__button:hover .c-vote-counter__icon,
+[data-theme='dark'] .c-vote-counter__button--voted .c-vote-counter__icon {
+  color: var(--mage-link);
+}
+
+.c-input {
+  border-radius: 0.65rem;
+}
+body .c-input {
+  background-color: var(--mage-surface);
+  color: var(--colors-gray-800);
+  border-color: var(--mage-border);
+}
+body .c-button--secondary {
+  background: var(--mage-surface);
+  color: var(--colors-gray-800);
+  border-color: var(--mage-border);
+}
+.c-input:focus {
+  border-color: var(--mage-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mage-focus) 18%, transparent);
+}
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--mage-focus);
+  outline-offset: 3px;
+}
+
+.c-roadmap-column {
+  background: var(--mage-page);
+}
+.c-roadmap-column__header {
+  border-color: var(--mage-border);
+}
+
+body[data-theme='light'] .c-posts-container__post-title,
+body[data-theme='light'] .c-roadmap-post__title {
+  color: #171717;
+}
+body[data-theme='dark'] .c-posts-container__post-title,
+body[data-theme='dark'] .c-roadmap-post__title {
+  color: #fafafa;
+}
+body[data-theme='dark'] #c-header .c-header__nav-link {
+  color: #c7cad5;
+}
+body[data-theme='dark'] #c-header .c-header__nav-link--active {
+  color: #fb923c;
+  box-shadow: 0 2px 0 #f97316;
+}
+body[data-theme='light'] #c-header .c-header__nav-link--active {
+  color: #9a3412;
+  box-shadow: 0 2px 0 #c2410c;
+}
+body .c-button--primary {
+  border: 1px solid #c2410c;
+}
+body[data-theme='dark'] .c-input,
+body[data-theme='dark'] .c-button--secondary {
+  color: #e5e5e5;
+  background: #0c112b;
+  border-color: #303953;
+}
+
+@media (max-width: 767px) {
+  #c-header .c-header__nav {
+    margin-inline-start: 0;
+    gap: 1.15rem;
+  }
+  #c-header .c-menu {
+    padding-block: 0.8rem;
+  }
+  #p-home {
+    padding-block: 1.75rem;
+    row-gap: 1.75rem;
+  }
+  #p-home .p-home__posts-col {
+    min-width: 0;
+    grid-column: 1;
+  }
+  #p-home .p-home__add-idea-btn {
+    padding: 1.1rem;
+  }
+  .c-posts-container__post {
+    padding: 1.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-button,
+  .c-posts-container__post,
+  .c-roadmap-post,
+  .c-vote-counter__button,
+  .c-vote-counter__icon,
+  .c-input {
+    transition: none;
+  }
+}
