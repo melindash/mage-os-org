@@ -1,0 +1,63 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const paths = [
+  {
+    id: 'developers',
+    title: 'Developers',
+    description: 'Find an issue and work toward your first pull request.',
+    icon: 'tabler:code',
+  },
+  {
+    id: 'module-authors',
+    title: 'Module authors',
+    description: 'Propose a module or bring an existing project to Mage-OS Lab.',
+    icon: 'tabler:puzzle',
+  },
+  {
+    id: 'testers-and-merchants',
+    title: 'Testers and merchants',
+    description: 'Reproduce a bug or test a real store workflow.',
+    icon: 'tabler:checklist',
+  },
+  {
+    id: 'documentation-contributors',
+    title: 'Documentation',
+    description: 'Improve an explanation, tutorial, or translation.',
+    icon: 'tabler:book',
+  },
+  {
+    id: 'marketing-and-design-contributors',
+    title: 'Marketing and design',
+    description: 'Help with content, visuals, and outreach.',
+    icon: 'tabler:palette',
+  },
+  {
+    id: 'community-contributors',
+    title: 'Community',
+    description: 'Answer questions and help newcomers.',
+    icon: 'tabler:users',
+  },
+];
+---
+
+<nav aria-label="Contributor paths" class="not-prose my-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  {
+    paths.map(({ id, title, description, icon }) => (
+      <a
+        href={`#${id}`}
+        class="group flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-colors hover:border-orange-400 hover:bg-orange-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-600 dark:border-slate-700 dark:bg-slate-900 dark:hover:border-orange-400 dark:hover:bg-slate-800 dark:focus-visible:outline-orange-400"
+      >
+        <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-950 dark:text-orange-300">
+          <Icon name={icon} class="h-6 w-6" aria-hidden="true" />
+        </span>
+        <span class="text-lg font-bold leading-snug text-slate-900 dark:text-white">{title}</span>
+        <span class="mt-2 mb-5 text-base leading-relaxed text-slate-600 dark:text-slate-300">{description}</span>
+        <span class="mt-auto flex items-center gap-2 text-sm font-semibold text-orange-700 dark:text-orange-300">
+          Explore this path
+          <Icon name="tabler:arrow-down" class="h-4 w-4" aria-hidden="true" />
+        </span>
+      </a>
+    ))
+  }
+</nav>
