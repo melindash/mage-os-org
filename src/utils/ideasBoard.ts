@@ -1,6 +1,15 @@
 import roadmapSnapshot from '~/data/ideas-roadmap.json';
 
-export type IdeaStatusId = 'open' | 'underreview' | 'planned' | 'started' | 'completed' | 'declined' | 'duplicate';
+export type IdeaStatusId =
+  | 'open'
+  | 'underreview'
+  | 'planned'
+  | 'started'
+  | 'unclaimed'
+  | 'parked'
+  | 'completed'
+  | 'declined'
+  | 'duplicate';
 
 export interface IdeaStatus {
   id: IdeaStatusId;
@@ -47,38 +56,51 @@ export const ROADMAP_STATUSES: IdeaStatusId[] = ['planned', 'started', 'complete
 export const ideaStatuses: IdeaStatus[] = [
   {
     id: 'open',
-    label: 'Open',
-    description: 'Submitted and open for discussion and votes. No decision has been made.',
+    label: 'Idea',
+    description: 'Submitted and open for discussion and votes. The Roadmap Team reviews new ideas every month.',
     icon: 'tabler:bulb',
   },
   {
     id: 'underreview',
     label: 'Under review',
-    description: 'Maintainers are assessing scope, fit and who could do the work.',
+    description: 'The Roadmap Team is deciding whether to accept, park or decline it.',
     icon: 'tabler:zoom-question',
   },
   {
     id: 'planned',
-    label: 'Planned',
-    description: 'Approved as a priority. Timing still depends on contributor capacity.',
+    label: 'Open for volunteers',
+    description: 'Accepted, with a task card. Claim it with a comment and the Roadmap Team confirms.',
     icon: 'tabler:flag',
   },
   {
     id: 'started',
-    label: 'Started',
-    description: 'Work is underway, usually tracked in a linked GitHub issue or pull request.',
+    label: 'In progress',
+    description:
+      'A volunteer has claimed it, usually with a linked pull request. Four weeks without visible progress reopens it.',
     icon: 'tabler:progress',
   },
   {
+    id: 'unclaimed',
+    label: 'Unclaimed',
+    description: 'Nobody claimed it within four weeks. The Roadmap Team splits it, parks it or declines it.',
+    icon: 'tabler:hourglass',
+  },
+  {
+    id: 'parked',
+    label: 'Parked',
+    description: 'Set aside for now and kept on the list. It can come back at a later review.',
+    icon: 'tabler:player-pause',
+  },
+  {
     id: 'completed',
-    label: 'Completed',
-    description: 'Released or delivered. Merged code alone does not count as completed.',
+    label: 'Done',
+    description: 'Merged after Tech Team review, with tests, docs and a named maintainer.',
     icon: 'tabler:circle-check',
   },
   {
     id: 'declined',
     label: 'Declined',
-    description: 'Not pursued, with a reason given on the idea.',
+    description: 'Not pursued, with a one-line reason given on the idea.',
     icon: 'tabler:circle-x',
   },
 ];
